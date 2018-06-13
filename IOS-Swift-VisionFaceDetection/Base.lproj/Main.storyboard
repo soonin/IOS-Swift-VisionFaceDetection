@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +14,94 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="IOS_Swift_VisionFaceDetection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbI-QI-z98">
+                                <rect key="frame" x="-46" y="308" width="467" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Take photo !">
+                                            <attributes>
+                                                <color key="NSColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="30" name="Chalkduster"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="takePhotoAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RUY-E4-elt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hbI-QI-z98" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qeb-67-I3s"/>
+                            <constraint firstItem="hbI-QI-z98" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="vTc-Qv-YGb"/>
+                            <constraint firstItem="hbI-QI-z98" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yEm-B0-XZn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="takePhotoButton" destination="hbI-QI-z98" id="oYY-be-0Cg"/>
+                        <segue destination="pWm-AM-qkh" kind="presentation" identifier="showImageSegue" id="eLn-4u-9e7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="KvX-Jb-g3a">
+            <objects>
+                <viewController id="pWm-AM-qkh" customClass="ImageViewController" customModule="IOS_Swift_VisionFaceDetection" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Smc-tq-2xS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-QY-hf4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKo-ik-H0M">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Image" id="WSt-jO-iO0">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Tyt-p8-4Dl">
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="xug-PM-ZqA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Proccess" id="OXk-Yd-DV5">
+                                            <connections>
+                                                <action selector="proccessAct:" destination="pWm-AM-qkh" id="Lp3-Qn-Ws6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cKo-ik-H0M" firstAttribute="trailing" secondItem="xed-cp-C4C" secondAttribute="trailing" id="1ug-f5-XVv"/>
+                            <constraint firstItem="cKo-ik-H0M" firstAttribute="leading" secondItem="xed-cp-C4C" secondAttribute="leading" id="QQZ-ax-lj8"/>
+                            <constraint firstItem="C2e-QY-hf4" firstAttribute="bottom" secondItem="xed-cp-C4C" secondAttribute="bottom" id="VCC-Hm-KTW"/>
+                            <constraint firstItem="C2e-QY-hf4" firstAttribute="top" secondItem="cKo-ik-H0M" secondAttribute="bottom" id="dVC-ep-Si5"/>
+                            <constraint firstItem="C2e-QY-hf4" firstAttribute="trailing" secondItem="xed-cp-C4C" secondAttribute="trailing" id="j6b-p5-PVM"/>
+                            <constraint firstItem="cKo-ik-H0M" firstAttribute="top" secondItem="xed-cp-C4C" secondAttribute="top" id="z1n-xL-IAP"/>
+                            <constraint firstItem="C2e-QY-hf4" firstAttribute="leading" secondItem="xed-cp-C4C" secondAttribute="leading" id="zMS-YH-xO3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xed-cp-C4C"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="C2e-QY-hf4" id="9bY-5D-wK2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QK0-TH-FWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="888.79999999999995" y="116.49175412293854"/>
         </scene>
     </scenes>
 </document>
